@@ -1067,7 +1067,14 @@ namespace Metro
 
         private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            mThread.Abort();
+            try
+            {
+                mThread.Abort();
+            }
+            catch
+            {
+
+            }
         }
     }
 }

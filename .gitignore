@@ -1,5 +1,10 @@
 .vs
-/Debug
+Debug/dll/
+Debug/*.exe
+Debug/*.exe.config
+Debug/*.pdb
+Debug/*.xml
+Debug/*.dll
 Metro/obj
 Metro/bin
 packages

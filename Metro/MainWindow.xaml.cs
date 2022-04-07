@@ -250,7 +250,8 @@ namespace Metro
          
 
             // Combobox List
-            List<string> mList = new List<string>() { "Move", "Loop", "Click", "Match", "Key", "Delay", "Get Point", "Run exe", "FindWindow", "ScreenClip", "Draw", "Clear Draw", "PostMessage", "PlaySound", "Shift", "Color Test" };
+            List<string> mList = new List<string>() { "Move", "Loop", "Click", "Match", "Key", "Delay", "Get Point",
+                "Run exe", "FindWindow", "ScreenClip", "Draw", "Clear Draw", "PostMessage", "PlaySound", "Shift"};
             mComboBoxColumn.ItemsSource = mList;
 
             //mDataTable.Add(new mTable() { mTable_IsEnable = true, mTable_Mode = "", mTable_Action = "", mTable_Time = 0 });
@@ -442,7 +443,7 @@ namespace Metro
 
                 //mDoSortedList.RemoveAt(mDoSortedList.IndexOfKey("Draw"));
 
-                //  GameOverlay .Net
+                // GameOverlay .Net
                 OverlayWindow _window;
                 GameOverlay.Drawing.Graphics _graphics;
 
@@ -825,11 +826,6 @@ namespace Metro
                             //System.Windows.MessageBox.Show(listStr);
 
 
-
-                            //End
-
-
-
                             Process[] processlist = Process.GetProcesses();
 
                             string titleText = "";
@@ -844,8 +840,6 @@ namespace Metro
                                 }
                             }
 
-
-                            //System.Windows.MessageBox.Show(titleText);
                             string out_string = titleText;
 
                             System.IO.File.WriteAllText(System.Windows.Forms.Application.StartupPath + "/" + "out" + ".txt", out_string);
@@ -864,98 +858,6 @@ namespace Metro
                           
                             break;
 
-                        case "Color Test":
-
-                            Mat mat_screen = new Mat();
-          
-                             Bitmap mscreenshot = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
-                          
-                             System.Drawing.Graphics mgfxScreenshot = System.Drawing.Graphics.FromImage(mscreenshot);
-                             
-                             mgfxScreenshot.CopyFromScreen(Screen.PrimaryScreen.Bounds.X, Screen.PrimaryScreen.Bounds.Y, 0, 0, Screen.PrimaryScreen.Bounds.Size, CopyPixelOperation.SourceCopy);
-
-                                //mgfxScreenshot.Dispose();
-
-                                mat_screen = BitmapConverter.ToMat(mscreenshot);
-
-                                //mscreenshot.Dispose();
-
-                                //Mat mat_HSV = new Mat();
-
-                                //Cv2.CvtColor(mat_screen, mat_HSV, ColorConversionCodes.RGB2HSV);
-
-                                Mat mask = new Mat();
-                              //  Scalar lower_blue = new OpenCvSharp.Scalar(20, 100, 100);
-                              //  Scalar upper_blue = new OpenCvSharp.Scalar(30, 255, 255);
-
-                              ////var lower_blue = new OpenCvSharp.Scalar(0, 0, 0);
-                              ////  var upper_blue = new OpenCvSharp.Scalar(255, 255, 255);
-
-                              //  Cv2.InRange(mat_screen, lower_blue, upper_blue, mask);
-                              //  Cv2.ImShow("a", mask);
-
-                              //  Cv2.WaitKey();
-
-                                //using (Mat src = bmpsrc.ToMat())
-                                //using (Mat dst = new Mat())
-                                //{
-                                    Scalar low_value = new Scalar(100, 100, 100);
-                                    Scalar high_value = new Scalar(255, 255, 255);
-                                    Cv2.InRange(mat_screen, low_value, high_value, mask);
-
-                                    Cv2.ImShow("a", mask);
-
-                                    Cv2.WaitKey();
-
-                                    //dstbmp = dst.ToBitmap();
-                                    //float sres = CountNonZero(dst) / (src.Width * src.Height * 1.0f) * 100;
-                                    //System.Console.WriteLine(sres);
-                                //}
-
-
-                            
-//                            var min = new (103, 33, 254);
-
-//                            var max = new Hsv(125, 35, 256);
-
-//                            var thresh = hsvImg.InRange(min, max);
-
-//                            CvInvoke.cvShowImage("thresh", thresh);
-
-                            
-//                            Cv2.InRange();
-
-//                            ColormapTypes.Hsv()
-
-                                //yellow_lower = np.array([22,60,200],np.uint8)
-                                //yellow_upper = np.array([60,255,255],np.uint8)
-
-                                //Here we will be tracking Yellow colour. So we define range of yellow color.
-
-                                //#finding the range yellow colour in the image
-                                // yellow = cv2.inRange(hsv, yellow_lower, yellow_upper)
-
-
-                            //if (!return_xyd.Equals(""))
-                            //{
-                            //    string[] xy = return_xyd.Split(',');
-                            //    // Move
-                            //    SetCursorPos(int.Parse(xy[0]) + temp_wd, int.Parse(xy[1]) + temp_hd);
-
-                            //    gfx.BeginScene(); // call before you start any drawing
-                            //    // Draw
-                            //    gfx.DrawTextWithBackground(_font, _red, _black, 10, 10, return_xyd.ToString());
-
-                            //    gfx.DrawRoundedRectangle(_red, RoundedRectangle.Create(int.Parse(xy[0]), int.Parse(xy[1]), temp_wd * 2, temp_hd * 2, 6), 2);
-                            //    gfx.EndScene();
-
-                            //    Tempflag = true;
-                            //}
-
-   
-
-                            break;
-
 
                         default:
 
@@ -964,8 +866,6 @@ namespace Metro
                     n++;
 
                     //Ring.IsActive = false;
-
-                  
 
                 }
                

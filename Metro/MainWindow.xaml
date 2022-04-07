@@ -20,10 +20,7 @@
         <Controls:FlyoutsControl>
             <Controls:Flyout x:Name="MahAppFlyout" Width="200">
                 <TextBlock Width = "200" Margin = "5px">  
-                    alt = % , shift = + and ctrl = ^  <LineBreak/>  
-                    EX: ^{v}" <LineBreak/>  
-                    {ENTER} ~ <LineBreak/>  
-                    Post 0x0D <LineBreak/>
+                    
                 </TextBlock>
             </Controls:Flyout>
         </Controls:FlyoutsControl>
@@ -65,7 +62,7 @@
                                 <EventSetter Event="PreviewMouseDown" Handler="b1SetColor"/>
                             </Style>
                         </DataGrid.CellStyle>-->
-                        
+
                         <DataGrid.Columns>
 
                             <!--<DataGridTextColumn Header="Data" Binding="{Binding Path=Test2}" Width="250" IsReadOnly="False" ></DataGridTextColumn>
@@ -119,37 +116,13 @@
                         </DataGrid.Columns>
 
                     </DataGrid>
-                    
+
                     <Button Click="Btn_open_Click" Content="Open" MinWidth="25" Width="50" Height="17" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,0" />
                     <Button Click="Btn_Save_Click" Name="Btn_Save" Content="SAVE" MinWidth="25" Width="50" Height="17" HorizontalAlignment="Right" VerticalAlignment="Bottom"  Margin="0,0,60,0"/>
                     <Button Click="Btn_Run_Click" Name="Btn_Run" Content="Run" MinWidth="25" Width="50" Height="17" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,120,0" />
                     <Controls:ProgressRing Name="Ring" IsActive="{Binding IsActive}"  MinWidth="25" Width="25" Height="17" HorizontalAlignment="Right" VerticalAlignment="Bottom"  Margin="0,0,180,0"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Input">
-
-                <Grid Background="White">
-                    <Grid.ColumnDefinitions>
-                        <!--<ColumnDefinition Width="133*"/>
-                        <ColumnDefinition Width="654*"/>-->
-                    </Grid.ColumnDefinitions>
-                    <Button Click="Btn_open_Click" Name="Btn_open" Content="Open" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="74" Controls:ButtonHelper.PreserveTextCase="True"/>
-                    <Button Click="Btn_close_Click" Name="Btn_close" Content="Close" HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top" Width="74" Controls:ButtonHelper.PreserveTextCase="True" Grid.ColumnSpan="2"/>
-                    <ScrollViewer HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Left" Height="259" Margin="10,56,0,0" VerticalAlignment="Top" Width="258" Grid.ColumnSpan="2" >
-                        <TextBox Name="Text_main" TextWrapping="Wrap" Text="" />
-                    </ScrollViewer>
-
-                </Grid>
-
-            </TabItem>
-            <!--<TabItem Header="RestAPI">
-
-                <Grid Background="White">
-                    <TextBox MaxWidth="500" Text="http://"/>
-
-                </Grid>
-
-            </TabItem>-->
         </TabControl>
 
     </Grid>

@@ -884,6 +884,13 @@ namespace Metro
             Run_script();
         }
 
+        private void Btn_Stop_Click(object sender, RoutedEventArgs ee)
+        {
+            mThread.Abort();//main thread aborting newly created thread.  
+            Thread_ON = false;
+            IsActive = false;
+        }
+
         private void Btn_close_Click(object sender, RoutedEventArgs e)
         {
 

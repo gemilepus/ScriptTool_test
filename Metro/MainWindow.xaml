@@ -19,8 +19,8 @@
     <Controls:MetroWindow.Flyouts>
         <Controls:FlyoutsControl>
             <Controls:Flyout x:Name="MahAppFlyout" Width="200">
-                <TextBlock Width = "200" Margin = "5px">  
-                    
+                <TextBlock Width = "200" Margin = "5px">
+
                 </TextBlock>
             </Controls:Flyout>
         </Controls:FlyoutsControl>
@@ -41,36 +41,11 @@
 
                         <DataGrid.Columns>
 
-                            <!--<DataGridTextColumn Header="Data" Binding="{Binding Path=Test2}" Width="250" IsReadOnly="False" ></DataGridTextColumn>
-
-                        <DataGridCheckBoxColumn IsReadOnly="False" ElementStyle="{DynamicResource MetroDataGridCheckBox}"
-                                        EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
-                                        Header="IsSelected"
-                                        Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=OneWay}"
-                                        />
-                        
-                        <DataGridTemplateColumn Header="Enable" Width="80" >
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-
-                        <DataGridTemplateColumn Header="Mode" Width="100">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBox Text="{Binding Path=Test1}" />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>-->
-
                             <DataGridTextColumn IsReadOnly="True" Header="#" Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=(ItemsControl.AlternationIndex)}"/>
                             <DataGridCheckBoxColumn Header="Enable" Binding="{Binding Path=mTable_IsEnable}"/>
-                            <!--<DataGridTextColumn Header="Mode" Binding="{Binding Path=mTable_Mode}" MinWidth="100"/>-->
                             <DataGridComboBoxColumn Header="Mode" x:Name="mComboBoxColumn" SelectedItemBinding="{Binding Path=mTable_Mode}" MinWidth="100"/>
                             <DataGridTextColumn Header="Action" Binding="{Binding Path=mTable_Action}" MinWidth="250"/>
-                            <DataGridTextColumn Header="Time" Binding="{Binding Path=mTable_Time}"/>
+                            <DataGridTextColumn Header="Time(not used)" Visibility="Hidden" Binding="{Binding Path=mTable_Time}"/>
                             <DataGridTemplateColumn Header=" ">
                                 <DataGridTemplateColumn.CellTemplate >
                                     <DataTemplate>
@@ -87,7 +62,6 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-
 
                         </DataGrid.Columns>
 
@@ -130,4 +104,3 @@
     </Grid>
 
 </Controls:MetroWindow>
-

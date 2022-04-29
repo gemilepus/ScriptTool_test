@@ -12,3 +12,5 @@ click open btn and select /Debug/Test.txt
 F8   Run Script
 F9   Stop Script
 ```
+## Demo
+![alt text?](https://github.com/gemilepus/ScriptTool_test/blob/main/Demo.png)

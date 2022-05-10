@@ -1,4 +1,5 @@
 True;Draw;s.png;0;
-True;Move;#;0;
-True;Delay;300;0;
-True;Loop;;0;
+True;Move;;0;
+True;Clear Draw;;;
+True;Delay;300;;
+True;Loop;;;

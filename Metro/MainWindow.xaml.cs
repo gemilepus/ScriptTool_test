@@ -254,7 +254,7 @@ namespace Metro
                 "Run exe", "FindWindow", "ScreenClip", "Draw", "Clear Draw", "PostMessage", "PlaySound", "Shift"};
             mComboBoxColumn.ItemsSource = mList;
 
-            //mDataTable.Add(new mTable() { mTable_IsEnable = true, mTable_Mode = "", mTable_Action = "", mTable_Time = 0 });
+            //mDataTable.Add(new mTable() { mTable_IsEnable = true, mTable_Mode = "", mTable_Action = "", mTable_Event = "" });
             mDataGrid.DataContext = mDataTable;
 
             eDataTable.Add(new eTable() { eTable_Enable = true, eTable_Name = "Run", eTable_Key = "R", eTable_Note = "" });
@@ -276,7 +276,7 @@ namespace Metro
               mTable_IsEnable = true,
                         mTable_Mode = "",
                         mTable_Action = "",
-                        mTable_Time = 0
+                        mTable_Event = ""
             };
         }
 
@@ -285,7 +285,7 @@ namespace Metro
             public bool   mTable_IsEnable { get; set; }
             public string mTable_Mode { get; set; }
             public string mTable_Action { get; set; }
-            public int mTable_Time { get; set; }
+            public string mTable_Event { get; set; }
         }
 
         public class eTable
@@ -381,7 +381,7 @@ namespace Metro
                         mTable_IsEnable = bool.Parse(SplitStr[i].Replace("%", "")),
                         mTable_Mode = SplitStr[i + 1].Replace("%", ""),
                         mTable_Action = SplitStr[i + 2].Replace("%", ""),
-                        mTable_Time = 0
+                        mTable_Event = SplitStr[i + 3].Replace("%", ""),
                     });
                 }
                 mDataGrid.DataContext = mDataTable;
@@ -406,7 +406,7 @@ namespace Metro
             for (int i = 0; i < mDataTable.Count; i++)
             {
                 out_string += mDataTable[i].mTable_IsEnable.ToString() + ";" + mDataTable[i].mTable_Mode + ";"
-                   + mDataTable[i].mTable_Action + ";" + mDataTable[i].mTable_Time.ToString() + ";" + "\n";
+                   + mDataTable[i].mTable_Action + ";" + mDataTable[i].mTable_Event.ToString() + ";" + "\n";
             }
             System.IO.File.WriteAllText(System.Windows.Forms.Application.StartupPath + "/" + result + ".txt", out_string);
       
@@ -496,20 +496,21 @@ namespace Metro
                 {
                     string Command = mDataTable[n].mTable_Mode;
                     string CommandData = mDataTable[n].mTable_Action;
+                    string CommandEvent = mDataTable[n].mTable_Event;
 
                     switch (Command)
                     {
                         case "Move":
 
-                            if (CommandData.IndexOf('#') != -1)                          
+                            if (!CommandEvent.Equals(""))                          
                             {
 
                                 // Check Key
-                                if (mDoSortedList.IndexOfKey(CommandData) != -1) {
+                                if (mDoSortedList.IndexOfKey(CommandEvent) != -1) {
                                     // Get SortedList Value by Key
-                                    string mDoItem = mDoSortedList.GetByIndex(mDoSortedList.IndexOfKey(CommandData)).ToString();
+                                    string mDoItem = mDoSortedList.GetByIndex(mDoSortedList.IndexOfKey(CommandEvent)).ToString();
                                     // Remove SortedList Value by key  
-                                    mDoSortedList.RemoveAt(mDoSortedList.IndexOfKey(CommandData));
+                                    mDoSortedList.RemoveAt(mDoSortedList.IndexOfKey(CommandEvent));
 
                                     string[] movestr = mDoItem.Split(',');
 
@@ -583,7 +584,15 @@ namespace Metro
                             string return_xy = RunTemplateMatch(matTarget, matTemplate);
                             if (!return_xy.Equals("")) {
                                 string[] xy = return_xy.Split(',');
-                                SetCursorPos(int.Parse(xy[0]) + temp_w, int.Parse(xy[1]) + temp_h);
+                                
+                                if (!CommandEvent.Equals(""))
+                                {
+                                    mDoSortedList.Add(CommandEvent, (int.Parse(xy[0]) + temp_w).ToString() + "," + (int.Parse(xy[1]) + temp_h).ToString());
+                                }
+                                else {
+                                    SetCursorPos(int.Parse(xy[0]) + temp_w, int.Parse(xy[1]) + temp_h);
+                                }
+                               
                             }
 
 
@@ -692,8 +701,7 @@ namespace Metro
                             if (!return_xyd.Equals(""))
                             {
                                 string[] xy = return_xyd.Split(',');
-                                // Move
-                                SetCursorPos(int.Parse(xy[0]) + temp_wd, int.Parse(xy[1]) + temp_hd);
+                               
 
                                 gfx.BeginScene(); // call before you start any drawing
                                 // Draw
@@ -703,6 +711,16 @@ namespace Metro
                                 gfx.EndScene();
 
                                 Tempflag = true;
+
+                                if (!CommandEvent.Equals(""))
+                                {
+                                    mDoSortedList.Add(CommandEvent, (int.Parse(xy[0]) + temp_wd).ToString() + "," + (int.Parse(xy[1]) + temp_hd).ToString());
+                                }
+                                else
+                                {
+                                    // Move
+                                    SetCursorPos(int.Parse(xy[0]) + temp_wd, int.Parse(xy[1]) + temp_hd);
+                                }
                             }
 
                             matTargetd.Dispose();
@@ -953,12 +971,12 @@ namespace Metro
                     {
                         // Insert Item
                         mDataGrid.DataContext = null;
-                        mDataTable.Insert(tableIndex + 1, new mTable() { mTable_IsEnable = true, mTable_Mode = "", mTable_Action = "", mTable_Time = 0 });
+                        mDataTable.Insert(tableIndex + 1, new mTable() { mTable_IsEnable = true, mTable_Mode = "", mTable_Action = "", mTable_Event = "" });
                         mDataGrid.DataContext = mDataTable;
                     }
                     else {
                         mDataGrid.DataContext = null;
-                        mDataTable.Add(new mTable() { mTable_IsEnable = true, mTable_Mode = "", mTable_Action = "", mTable_Time = 0 });
+                        mDataTable.Add(new mTable() { mTable_IsEnable = true, mTable_Mode = "", mTable_Action = "", mTable_Event = "" });
                         mDataGrid.DataContext = mDataTable;
                     }                  
                 }
